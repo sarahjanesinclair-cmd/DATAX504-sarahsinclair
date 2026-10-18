@@ -1,10 +1,9 @@
 DATAX504 FINAL PROJECT: PREDICTING RUNNING EFFICIENCY FROM GARMIN DATA
 
-Sarah Sinclair (9307035)
-
 This project predicts how efficiency (speed divided by heart rate) will
 change in the next 30-second window of a run (Base, Declining, Improving
-or Recovery) from my own Garmin sensor data, using a GRU.
+or Recovery) from my own Garmin sensor data, using a GRU. Test accuracy
+is 0.605 on 375 unseen runs, against 0.376 for always guessing Base.
 
 FOLDERS
 - data_prep: turns the sorted running .fit files into the model input (X)
@@ -17,13 +16,23 @@ FOLDERS
 RUN ORDER
 1. data_prep: builds X and Y.
 2. R1: builds the workout type labels. Only needed for C1_06.
-3. C1: run the notebooks in number order. The test set is used once, in C1_09.
+3. C1: run the notebooks in number order. The test set is used once, in
+   C1_09.
 See the readme in each folder for details.
 
 DATA
-The data is my personal Garmin Connect export and is not in this repo.
-To run the C1 notebooks without rebuilding the data, download the
-Processed folder (X, Y and the saved final model) from: [add link]
+The data is my personal Garmin Connect export. It is not in this repo
+because it contains GPS routes. It is on Google Drive and shared only with
+the course lecturer:
+https://drive.google.com/file/d/1DMXntvX_vYyjdxoWoOv933Q313DIn9m-/view?usp=drive_link
+
+The zip is a copy of the garmin_data folder and contains:
+- DI_CONNECT\Sorted\Run: the sorted running .fit files (input to data_prep)
+- Processed: X and Y, the R1 labels, the saved final model and the results
+  of the C1 experiments (input to the C1 notebooks)
+
+To use it, unzip it and set the paths in the setup cell of each notebook
+to the unzipped garmin_data folder.
 
 SETUP
 - Python 3 with pandas, numpy, scikit-learn, matplotlib, TensorFlow (Keras)
